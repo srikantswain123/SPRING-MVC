@@ -1,0 +1,45 @@
+<html xmlns:th="https://thymeleaf.org"> 
+<h1 style="color: green; text-align: center">EmployeeAllDetails</h1>
+
+<table border="1" align="center" bgcolor="#8080ff">
+	
+			<div th:if="${!pageEmpList.getContent().empty}">
+			<tr>
+				<th>EmployeeId</th>
+				<th>EmployeeName</th>
+				<th>EmployeeAddress</th>
+				<th>EmployeeDesgination</th>
+				<th>EmployeeSallary</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+				<tr th:each="et:${pageEmpList.getContent()}">
+					<td th:text="${et.eid}"/>
+					<td th:text="${et.ename}"/>
+					<td th:text="${et.eadd}"/>
+					<td th:text="${et.desg}"/>
+					<td th:text="${et.esal}"/>
+					<td><a th:href="@{/employee/edit(no=${et.eid})}"><img alt="Edit" th:src="@{/images/edit.png}"
+							height="30px;" width="30px;" autofocus="autofocus"></a></td>
+					<td><a th:href="@{/employee/delete(no=${et.eid})}" onclick="return confirm('Aru you sure to delete?')"><img alt="Delete"
+							th:src="@{/images/delete.jpg}" height="30px;" width="30px;" autofocus="autofocus"></a></td>
+				</tr>
+				</div>
+			</table>
+			<p >
+			<div style="color:blue;text-align:center" th:if="${!pageEmpList.isFirst()}">
+			  <center><a th:href="@{/employee/report_paging(page=${pageEmpList.getNumber()-1})}" th:text="Previous"/></center>
+			</div>
+			<center> <option th:each="i : ${#numbers.sequence(1, pageEmpList.getTotalPages()-1)}" th:value="${i}"  />
+			 <a th:href="@{/employee/report_paging(page=${i})}" th:text="value"/> </center></option>
+			<div th:if="${!pageEmpList.isLast()}">
+			 <center><a th:href="@{/employee/report_paging(page=${pageEmpList.getNumber()+1})}" th:text="Next"/></center>
+			</div>
+			</p>
+		<div th:if="${pageEmpList.getContent().empty}">
+			<h1 style="color: red; text-align: center">No Record Found</h1>
+		</div>
+
+<h1 style="color:green;text-align:center" th:text="${updateResult}"/>
+<h1 style="color:green;text-align:center" th:text="${deleteObject}"/>
+</html>

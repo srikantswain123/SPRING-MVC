@@ -1,0 +1,15 @@
+<html xmlns:th="https://thymeleaf.org">
+
+<form th:action="@{/employee/edit}" method="POST"  th:object="${emp}">
+<table bgcolor="#33cc66" align="center" boredr="1">
+<tr>
+<td>EmployeeId</td><td><input type="text" th:field="*{eid}" readonly="true"/></td></tr>
+<tr><td>EmployeeName</td><td><input type="text" th:field="*{ename}"/></td></tr>
+<tr><td>EmployeeAddress</td><td><input type="text" th:field="*{eadd}"/></td></tr>
+<tr><td>EmployeeDesination</td><td><input type="text" th:field="*{desg}"/></td></tr>
+<tr><td>EmployeeSallary</td><td><input type="text" th:field="*{esal}"/></td></tr>
+<tr><td colspan="2"><input type="submit" align="center"  value="EditAndUpdate"/></td>
+</tr>
+</table>
+</form>
+</html>

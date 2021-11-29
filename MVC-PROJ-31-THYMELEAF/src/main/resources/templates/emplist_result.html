@@ -1,0 +1,33 @@
+<html xmlns:th="https://thymeleaf.org">    
+<h1 style="color: green; text-align: center">EmployeeAllDetails</h1>
+
+<table border="1" align="center" bgcolor="#8080ff">
+		<div th:if="${!empList.empty }">
+			<tr>
+				<th>EmployeeId</th>
+				<th>EmployeeName</th>
+				<th>EmployeeAddress</th>
+				<th>EmployeeDesgination</th>
+				<th>EmployeeSallary</th>
+				<th>Edit</th>
+				<th>Delete</th>
+			</tr>
+				<tr th:each="et:${empList}">
+					<td th:text="${et.eid}"/>
+					<td th:text="${et.ename}"/>
+					<td th:text="${et.eadd}"/>
+					<td th:text="${et.desg}"/>
+					<td th:text="${et.esal}"/>
+					<td><a th:href="@{/employee/edit(no=${et.eid})}"><img alt="Edit" th:src="@{/images/edit.png}"
+							height="30px;" width="30px;" autofocus="autofocus"></a></td>
+					<td><a th:href="@{/employee/delete(no=${et.eid})}" onclick="return confirm('Aru you sure to delete?')"><img alt="Delete"
+							th:src="@{/images/delete.jpg}" height="30px;" width="30px;" autofocus="autofocus"></a></td>
+				</tr>
+		</div>
+		<div th:if="${empList.empty}">
+			<h1 style="color: red; text-align: center">No Record Found</h1>
+		</div>
+</table>
+<h1 style="color:green;text-align:center" th:text="${updateResult}"/>
+<h1 style="color:green;text-align:center" th:text="${deleteObject}"/>
+</html>

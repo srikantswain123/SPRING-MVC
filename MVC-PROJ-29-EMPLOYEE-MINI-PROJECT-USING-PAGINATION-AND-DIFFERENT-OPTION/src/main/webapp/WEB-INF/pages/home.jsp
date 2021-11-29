@@ -1,0 +1,2 @@
+<h1 style="color:red;text-align:center"><a href="employeeDetials">GenaretaEmployeePage</a></h1>
+<h1 style="color:red;text-align:center"><a href="report_paging">GenaretaEmployeePageWithPagination</a></h1>

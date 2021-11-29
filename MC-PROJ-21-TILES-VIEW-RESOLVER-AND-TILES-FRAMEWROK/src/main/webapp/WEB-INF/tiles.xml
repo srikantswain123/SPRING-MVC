@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE tiles-definitions PUBLIC  
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"  
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+
+<tiles-definitions>
+	<definition name="base" template="/WEB-INF/layout.jsp">
+		<put-attribute name="title" value="" />
+		<put-attribute name="header"
+			value="/WEB-INF/pages/header.jsp" />
+		<put-attribute name="menu"
+			value="/WEB-INF/pages/menu.jsp" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer"
+			value="/WEB-INF/pages/footer.jsp" />
+	</definition>
+	<definition name="homePage" extends="base">
+		<put-attribute name="title" value="/WEB-INF/pages/homeTile.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/home.jsp" />
+	</definition>
+	<definition name="JavaPage" extends="base">
+		<put-attribute name="title" value="/WEB-INF/pages/javaTile.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/java.jsp" />
+	</definition>
+	<definition name="DotNetPage" extends="base">
+		<put-attribute name="title" value="/WEB-INF/pages/netTile.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/dotNet.jsp" />
+	</definition>
+	<definition name="OraclePage" extends="base">
+		<put-attribute name="title" value="/WEB-INF/pages/oraTile.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/pages/oracle.jsp" />
+	</definition>
+</tiles-definitions>

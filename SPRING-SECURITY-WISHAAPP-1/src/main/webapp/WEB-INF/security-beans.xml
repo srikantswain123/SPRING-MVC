@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans-4.3.xsd
+		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context-4.3.xsd
+		http://www.springframework.org/schema/jee https://www.springframework.org/schema/jee/spring-jee-4.3.xsd
+		http://www.springframework.org/schema/security https://www.springframework.org/schema/security/spring-security-5.4.xsd">
+
+<security:http use-expressions="true" >
+  <security:intercept-url pattern="/welcome" access="permitAll"/>
+  <security:intercept-url pattern="/wmc" access="hasAnyRole('ROLE_MANAGER','ROLE_CLERK')"/>
+<!--   <security:http-basic/> -->
+  <security:form-login />
+  <!-- encrypt denied handler must requierd to configure -->
+  <security:access-denied-handler error-page="/error_map.jsp"/>
+  <!-- for logout user id passowrd remove from cashe -->
+  <security:logout logout-url="/logout"/>
+  <security:remember-me />
+  
+  <!-- every user should open only 2 times at a time other session will out  try to open with different browser bcoz session is one per browser  -->
+  <security:session-management >
+  <security:concurrency-control max-sessions="2" error-if-maximum-exceeded="true"/>
+  </security:session-management>
+  
+</security:http>
+
+   <security:authentication-manager>
+     <security:authentication-provider>
+     
+       <!-- <security:user-service>
+         <security:user name="raja" password="$2a$15$Fap3QXVoihsR9c0tqhX9UuPmpqYhNfLT2mzUw2igl21o3/On/VxJW"  authorities="ROLE_MANAGER" locked="true"/>
+         <security:user name="umesh" password="$2a$15$oXhcxhV87X5yjxf4YmZBAulkr0fsBngTD8OB/40kg85udLxbPdpGq" authorities="ROLE_CLERK"/>
+         <security:user name="rajesh" password="$2a$15$UowoOgZ1calbm3LVSrBMQOr3uBBwFt6ML57v8aL.z2ClOEyMDHsam" authorities="ROLE_CLERK"/>
+         <security:user name="ritesh" password="$2a$15$IRdBfLfaj.L8GMw07Oqoe.THDrVekATSj1XgY.WDew2lN6yRPcmv6" authorities="ROLE_VISITOR"/>
+       </security:user-service>
+       
+       <security:password-encoder hash="bcrypt"/> -->
+       <!-- using properties file -->
+      <!--  <security:user-service properties="classpath:com/nt/commons/info.properties"/> -->
+      
+      <!-- using dbs -->
+      
+      <security:jdbc-user-service data-source-ref="ds" users-by-username-query="SELECT UNAME,PWD,STATUS FROM USERS_DB WHERE UNAME=?" 
+                                                       authorities-by-username-query="SELECT UNAME,ROLE FROM USERS_ROLE WHERE UNAME=?"/>
+     </security:authentication-provider>
+     
+   </security:authentication-manager>
+   
+  
+</beans>

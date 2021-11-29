@@ -1,0 +1,1 @@
+<h1 style="color:red;text-align:center"><a href="wmc.htm">GetWishMessage</a></h1>
